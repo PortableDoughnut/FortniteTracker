@@ -28,9 +28,9 @@ struct Player {
 extension Player: Comparable {
 	static func < (lhs: Player, rhs: Player) -> Bool {
 		if lhs.score == rhs.score {
-			return lhs.name < rhs.name
+			return lhs.name > rhs.name
 		} else {
-			return lhs.score < rhs.score
+			return lhs.score > rhs.score
 		}
 	}
 }

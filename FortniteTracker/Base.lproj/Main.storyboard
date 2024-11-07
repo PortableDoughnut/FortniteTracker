@@ -17,28 +17,28 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="playerCell" id="4aH-rp-SpX" customClass="PlayerTableViewCell" customModule="FortniteTracker" customModuleProvider="target">
-                                <rect key="frame" x="20" y="55.333332061767578" width="353" height="48.333332061767578"/>
+                                <rect key="frame" x="20" y="55.333332061767578" width="353" height="49"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4aH-rp-SpX" id="jQM-go-YMy" customClass="PlayerTableViewCell" customModule="FortniteTracker" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="353" height="48.333332061767578"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="center" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="G3P-Qq-DJg">
-                                            <rect key="frame" x="8" y="4" width="337" height="40.333333333333336"/>
+                                            <rect key="frame" x="8" y="4" width="337" height="41"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SUW-zc-3dp">
-                                                    <rect key="frame" x="0.0" y="0.33333333333333215" width="178.66666666666666" height="40"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SUW-zc-3dp">
+                                                    <rect key="frame" x="0.0" y="0.33333333333333215" width="212.66666666666666" height="40.333333333333343"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CZ6-tW-3nO" customClass="ProfilePictureImageView" customModule="FortniteTracker" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40.333333333333336"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="A23-2u-Wl6"/>
                                                                 <constraint firstAttribute="width" constant="40" id="GrY-rt-cSe"/>
                                                                 <constraint firstAttribute="width" secondItem="CZ6-tW-3nO" secondAttribute="height" multiplier="1:1" id="LyI-zS-s4k"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-mH-bWk">
-                                                            <rect key="frame" x="44" y="9.6666666666666696" width="134.66666666666666" height="20.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymz-mH-bWk">
+                                                            <rect key="frame" x="43.999999999999986" y="9.9999999999999982" width="168.66666666666663" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -50,14 +50,18 @@
                                                         <constraint firstAttribute="bottomMargin" secondItem="CZ6-tW-3nO" secondAttribute="bottom" id="Sf8-va-R5q"/>
                                                     </constraints>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ggY-TM-4oh">
-                                                    <rect key="frame" x="194.66666666666663" y="4.3333333333333357" width="142.33333333333337" height="32"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ggY-TM-4oh">
+                                                    <rect key="frame" x="228.66666666666666" y="4.3333333333333321" width="108.33333333333334" height="32.333333333333343"/>
                                                     <subviews>
                                                         <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="bro-rt-oLy">
-                                                            <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="94" height="32.333333333333336"/>
+                                                            <connections>
+                                                                <action selector="stepperValueChanged:" destination="4oX-gJ-sjV" eventType="valueChanged" id="462-rZ-Px3"/>
+                                                                <action selector="stepperValueChanged:" destination="4aH-rp-SpX" eventType="valueChanged" id="XFj-fo-lG2"/>
+                                                            </connections>
                                                         </stepper>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03g-L2-HcE">
-                                                            <rect key="frame" x="98.000000000000028" y="0.0" width="44.333333333333343" height="32"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03g-L2-HcE">
+                                                            <rect key="frame" x="98.000000000000028" y="0.0" width="10.333333333333329" height="32.333333333333336"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -65,6 +69,11 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ggY-TM-4oh" firstAttribute="top" secondItem="G3P-Qq-DJg" secondAttribute="top" constant="4.3333333333333357" id="E7a-mp-lfq"/>
+                                                <constraint firstItem="ggY-TM-4oh" firstAttribute="leading" secondItem="G3P-Qq-DJg" secondAttribute="leading" constant="228.66666666666663" id="vYd-YY-BUV"/>
+                                                <constraint firstItem="SUW-zc-3dp" firstAttribute="top" secondItem="G3P-Qq-DJg" secondAttribute="top" constant="0.33333333333333215" id="vji-Da-Swy"/>
+                                            </constraints>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -88,7 +97,9 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Scoreboard" id="xYm-BC-3Zt"/>
+                    <navigationItem key="navigationItem" title="Scoreboard" id="xYm-BC-3Zt">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DWD-Da-GWE"/>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TeM-Br-6Ws" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
