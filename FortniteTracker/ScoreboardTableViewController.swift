@@ -15,6 +15,20 @@ class ScoreboardTableViewController: UITableViewController {
          self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
+	@IBAction func undwindToScoreboard(_ segue: UIStoryboardSegue) {
+		guard segue.identifier == "scoreboardUnwind",
+			  let sourceViewController = segue.source as? AddNewPlayerTableViewController,
+			  let newPlayer = sourceViewController.newPlayer
+		else {
+			print("Unwind Failed")
+			return	}
+		
+		
+		players.append(newPlayer)
+		players.sort()
+		tableView.reloadData()
+	}
+	
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -47,6 +61,7 @@ class ScoreboardTableViewController: UITableViewController {
         if editingStyle == .delete {
 			players.remove(at: indexPath.section)
 			tableView.deleteSections([indexPath.section], with: .fade)
+			sortReload()
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -54,7 +69,6 @@ class ScoreboardTableViewController: UITableViewController {
 	@IBAction func stepperValueChanged(_ sender: UIStepper) {
 	}
 	
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -62,7 +76,11 @@ class ScoreboardTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+	
+	func sortReload() {
+		players = players.sorted()
+		tableView.reloadData()
+	}
 
 }
 
@@ -73,8 +91,7 @@ extension ScoreboardTableViewController: PlayerTableViewCellDelegate {
 					let indexPath = IndexPath(row: 0, section: index)
 			tableView.reloadRows(at: [indexPath], with: .automatic)
 				}
-		players = players.sorted()
-		tableView.reloadData()
+		sortReload()
 	}
 
 	
