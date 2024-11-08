@@ -9,10 +9,10 @@ import UIKit
 
 class ScoreboardTableViewController: UITableViewController {
 
+	var currentGameIndex: Int?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
-			
-         self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 
 	@IBAction func undwindToScoreboard(_ segue: UIStoryboardSegue) {
@@ -24,15 +24,15 @@ class ScoreboardTableViewController: UITableViewController {
 			return	}
 		
 		
-		players.append(newPlayer)
-		players.sort()
+		games[currentGameIndex!].players.append(newPlayer)
+		games[currentGameIndex!].players.sort()
 		tableView.reloadData()
 	}
 	
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-		players.count
+		games[currentGameIndex!].players.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -45,7 +45,7 @@ class ScoreboardTableViewController: UITableViewController {
 			return UITableViewCell()
 		}
 		
-		let player: Player = players[indexPath.section]
+		let player: Player = games[currentGameIndex!].players[indexPath.section]
 		cell.configure(with: player)
 		cell.delegate = self
 
@@ -59,7 +59,7 @@ class ScoreboardTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-			players.remove(at: indexPath.section)
+			games[currentGameIndex!].players.remove(at: indexPath.section)
 			tableView.deleteSections([indexPath.section], with: .fade)
 			sortReload()
         } else if editingStyle == .insert {
@@ -78,7 +78,7 @@ class ScoreboardTableViewController: UITableViewController {
     }
 	
 	func sortReload() {
-		players = players.sorted()
+		games[currentGameIndex!].players = games[currentGameIndex!].players.sorted()
 		tableView.reloadData()
 	}
 
@@ -86,8 +86,8 @@ class ScoreboardTableViewController: UITableViewController {
 
 extension ScoreboardTableViewController: PlayerTableViewCellDelegate {
 	func didChangeScore(forPlayer player: Player, newScore: Int) {
-		if let index = players.firstIndex(where: { $0.name == player.name }) {
-					players[index].score = newScore
+		if let index = games[currentGameIndex!].players.firstIndex(where: { $0.name == player.name }) {
+			games[currentGameIndex!].players[index].score = newScore
 					let indexPath = IndexPath(row: 0, section: index)
 			tableView.reloadRows(at: [indexPath], with: .automatic)
 				}
