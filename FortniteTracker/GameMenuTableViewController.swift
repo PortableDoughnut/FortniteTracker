@@ -20,7 +20,7 @@ class GameMenuTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
          
-		self.navigationItem.rightBarButtonItem = self.editButtonItem
+		self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +63,10 @@ class GameMenuTableViewController: UITableViewController {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
+	
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		84
+	}
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
