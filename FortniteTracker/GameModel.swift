@@ -47,6 +47,29 @@ struct Game {
 		self.sortType = sortType
 		self.gameImage = ProfilePictureImageView(image: gameImage)
 	}
+	
+	init(
+		name: String,
+		players: [Player],
+		winType: ScoreType,
+		sortType: ScoreType
+	) {
+		self.id = UUID()
+		self.name = name
+		self.players = players.map {
+			Player.init(
+				name: $0.name,
+				profilePicture: $0.profilePicture.image ?? UIImage(),
+				sortType: sortType
+			)
+		}
+		self.winType = winType
+		self.sortType = sortType
+		let monogramView: MonogramIconUIView = .init(initials: name, backgroundColour: .systemBlue)
+		monogramView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+		monogramView.layoutIfNeeded()
+		self.gameImage = .init(image: monogramView.asImage())
+	}
 	}
 
 var games: [Game] = [Game(name: "Fortnite", players: [
@@ -57,4 +80,4 @@ var games: [Game] = [Game(name: "Fortnite", players: [
 	Player(name: "Jennifer Walters", profilePicture: #imageLiteral(resourceName: "JenniferWalters.jpg")),
 	Player(name: "Jubilation Lee", profilePicture: #imageLiteral(resourceName: "Jubilee.jpg")),
 	Player(name: "Gwen Stacy", profilePicture: #imageLiteral(resourceName: "SpiderGwen.jpg"))
-], gameImage: UIImage(), winType: .highestScore, sortType: .highestScore)]
+], winType: .highestScore, sortType: .highestScore)]

@@ -35,20 +35,18 @@ class AddNewPlayerTableViewController: UITableViewController {
         // Get the new view controller using segue.destination.
 		guard segue.identifier == "scoreboardUnwind" else {	return	}
         // Pass the selected object to the new view controller.
-		newPlayer = Player(
+		newPlayer = hasChosenImage ? Player(
 			name: playerNameTextField.text ?? "Player",
 			profilePicture: playerImageView.image ?? UIImage(),
 			score: Int(currentScoreTextField.text!) ?? 0
-		)
+		) : Player(name: playerNameTextField.text ?? "Player", score: Int(currentScoreTextField.text!) ?? 0)
     }
 
 	@IBAction func chooseImageButton(_ sender: UIButton) {
-		chooseImage(sender)
-		
 		if !hasChosenImage {
 			hasChosenImage = true
-			ifTrueEnableSaveButton()
 		}
+		chooseImage(sender)
 	}
 	
 	@IBAction func playerNameEditingDidBegin(_ sender: UITextField) {
@@ -71,7 +69,7 @@ class AddNewPlayerTableViewController: UITableViewController {
 	func ifTrueEnableSaveButton() {
 		elemenntsEntered += 1
 		
-		if elemenntsEntered == 3 {
+		if elemenntsEntered == 2 {
 			savePlayerButton.isEnabled = true
 		} else {
 			savePlayerButton.isEnabled = false
