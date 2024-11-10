@@ -113,7 +113,7 @@
             <objects>
                 <tableViewController id="jh3-PP-5Kj" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="id1-5K-iSl">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -131,6 +131,7 @@
                             <outlet property="delegate" destination="jh3-PP-5Kj" id="E6e-qE-Yoc"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="KyD-wO-jp1"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXB-Ex-ygu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -230,7 +231,7 @@
                     <navigationItem key="navigationItem" title="Scoreboard" id="xYm-BC-3Zt">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="DWD-Da-GWE">
                             <connections>
-                                <segue destination="Btp-U1-WXu" kind="show" id="dIV-bf-hDF"/>
+                                <action selector="addPlayerButtonTapped:" destination="4oX-gJ-sjV" id="DDw-L8-4Ho"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -310,13 +311,16 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Add New Player"/>
                                         <connections>
-                                            <segue destination="Btp-U1-WXu" kind="show" identifier="AddNewPlayerSegue" id="BQ7-TW-136"/>
+                                            <action selector="addNewPlayerButtonTapped:" destination="I0e-Sg-OCP" eventType="touchUpInside" id="Olw-pe-GYw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jbd-kN-U86">
                                         <rect key="frame" x="184.66666666666663" y="0.0" width="176.33333333333337" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Choose Player"/>
+                                        <connections>
+                                            <segue destination="jh3-PP-5Kj" kind="presentation" id="b9g-mQ-Oym"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -324,7 +328,7 @@
                                 <rect key="frame" x="16" y="408" width="361" height="359.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="xxe-E1-fen" customClass="GenericPlayerTableViewCell" customModule="FortniteTracker" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewGamePlayerCell" id="xxe-E1-fen" customClass="GenericPlayerTableViewCell" customModule="FortniteTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="361" height="88.333335876464844"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xxe-E1-fen" id="ziO-9n-uNO">
@@ -393,6 +397,9 @@
                     <navigationItem key="navigationItem" title="Add New Game" id="8I8-SA-yER">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="4jl-Oa-zLr"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="Zcc-1j-7TK" id="hd0-58-z5p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mPd-30-aOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -401,7 +408,7 @@
         <!--Add New Player-->
         <scene sceneID="OaX-0A-rXP">
             <objects>
-                <tableViewController id="Btp-U1-WXu" customClass="AddNewPlayerTableViewController" customModule="FortniteTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddNewPlayerTableViewController" id="Btp-U1-WXu" customClass="AddNewPlayerTableViewController" customModule="FortniteTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" id="HW6-5a-jce">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -539,7 +546,6 @@
                                                     <buttonConfiguration key="configuration" style="filled" title="Save Player"/>
                                                     <connections>
                                                         <action selector="savePlayerButtonPressed:" destination="Btp-U1-WXu" eventType="touchUpInside" id="SAC-0G-yLx"/>
-                                                        <segue destination="Wo7-6t-pdh" kind="unwind" unwindAction="undwindToScoreboard:" id="Wlh-VP-e89"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -569,7 +575,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JnY-VO-040" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Wo7-6t-pdh" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-1156" y="649"/>
         </scene>
@@ -592,16 +597,13 @@
             <point key="canvasLocation" x="-3123" y="-42"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="BQ7-TW-136"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

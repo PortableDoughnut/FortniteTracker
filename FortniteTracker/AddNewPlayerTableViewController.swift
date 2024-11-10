@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NewPlayerDelegate: AnyObject {
+	func didAddNewPlayer(_ player: Player)
+}
+
 class AddNewPlayerTableViewController: UITableViewController {
 	@IBOutlet weak var playerNameTextField: UITextField!
 	@IBOutlet weak var currentScoreTextField: UITextField!
@@ -14,7 +18,9 @@ class AddNewPlayerTableViewController: UITableViewController {
 	@IBOutlet weak var playerImageView: UIImageView!
 	@IBOutlet weak var savePlayerButton: UIButton!
 	
-	var elemenntsEntered: Int = 0
+	weak var delegate: NewPlayerDelegate?
+	
+	var elementsEntered: Int = 0
 	var hasEditedPlayerName: Bool = false
 	var hasEditedCurrentScore: Bool = false
 	var hasChosenImage: Bool = false
@@ -33,13 +39,8 @@ class AddNewPlayerTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
-		guard segue.identifier == "scoreboardUnwind" else {	return	}
+//		guard segue.identifier == "scoreboardUnwind" else {	return	}
         // Pass the selected object to the new view controller.
-		newPlayer = hasChosenImage ? Player(
-			name: playerNameTextField.text ?? "Player",
-			profilePicture: playerImageView.image ?? UIImage(),
-			score: Int(currentScoreTextField.text!) ?? 0
-		) : Player(name: playerNameTextField.text ?? "Player", score: Int(currentScoreTextField.text!) ?? 0)
     }
 
 	@IBAction func chooseImageButton(_ sender: UIButton) {
@@ -64,12 +65,25 @@ class AddNewPlayerTableViewController: UITableViewController {
 	}
 	
 	@IBAction func savePlayerButtonPressed(_ sender: UIButton) {
+		newPlayer = hasChosenImage ? Player(
+			name: playerNameTextField.text ?? "Player",
+			profilePicture: playerImageView.image ?? UIImage(),
+			score: Int(currentScoreTextField.text!) ?? 0
+		) : Player(name: playerNameTextField.text ?? "Player", score: Int(currentScoreTextField.text!) ?? 0)
+		print("""
+New Player in NewPlayerViewController:
+	Name: \(newPlayer?.name ?? "Error")
+	Score: \(newPlayer?.score ?? 404)
+""")
+		guard let newPlayer = newPlayer else { return }
+		delegate?.didAddNewPlayer(newPlayer)
+		dismiss(animated: true , completion: nil)
 	}
 	
 	func ifTrueEnableSaveButton() {
-		elemenntsEntered += 1
+		elementsEntered += 1
 		
-		if elemenntsEntered == 2 {
+		if elementsEntered == 2 {
 			savePlayerButton.isEnabled = true
 		} else {
 			savePlayerButton.isEnabled = false

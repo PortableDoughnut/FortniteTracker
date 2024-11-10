@@ -14,20 +14,6 @@ class ScoreboardTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-	@IBAction func undwindToScoreboard(_ segue: UIStoryboardSegue) {
-		guard segue.identifier == "scoreboardUnwind",
-			  let sourceViewController = segue.source as? AddNewPlayerTableViewController,
-			  let newPlayer = sourceViewController.newPlayer
-		else {
-			print("Unwind Failed")
-			return	}
-		
-		
-		games[currentGameIndex!].players.append(newPlayer)
-		games[currentGameIndex!].players.sort()
-		tableView.reloadData()
-	}
 	
     // MARK: - Table view data source
 
@@ -74,8 +60,20 @@ class ScoreboardTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
+//		if let destintaion = segue.destination as? AddNewPlayerTableViewController {
+//			destintaion.sourceViewController = "scoreboardUnwind"
+//		}
         // Pass the selected object to the new view controller.
     }
+	
+	@IBAction func addPlayerButtonTapped(_ sender: UIBarButtonItem) {
+		let storyboard = UIStoryboard(name: "Main", bundle: nil)
+		if let addNewPlayerVC = storyboard.instantiateViewController(withIdentifier: "AddNewPlayerTableViewController") as? AddNewPlayerTableViewController {
+			addNewPlayerVC.delegate = self
+			addNewPlayerVC.modalPresentationStyle = .fullScreen
+			present(addNewPlayerVC, animated: true, completion: nil)
+		}
+	}
 	
 	func sortReload() {
 		games[currentGameIndex!].players = games[currentGameIndex!].players.sorted()
@@ -95,4 +93,18 @@ extension ScoreboardTableViewController: PlayerTableViewCellDelegate {
 	}
 
 	
+}
+
+extension ScoreboardTableViewController: NewPlayerDelegate {
+	func didAddNewPlayer(_ player: Player) {
+		print("""
+New Player in ScoereboardViewController:
+	Name: \(player.name)
+	Score: \(player.score)
+""")
+		guard let currentGameIndex = currentGameIndex else {	return	}
+		games[currentGameIndex].players.append(player)
+		games[currentGameIndex].players.sort()
+		sortReload()
+	}
 }
