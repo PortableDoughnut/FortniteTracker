@@ -13,40 +13,132 @@ struct Player {
 	var profilePicture: ProfilePictureImageView
 	var score: Int
 	var sortType: ScoreType
+	var id: UUID
 	
-	init(name: String, profilePicture: UIImage, sortType: ScoreType) {
+		init(name: String, profilePicture: UIImage, sortType: ScoreType) {
+			self.name = name
+			self.profilePicture = .init(image: profilePicture)
+			score = 0
+			self.sortType = sortType
+			self.id = UUID()
+		}
+		init (
+			name: String,
+			profilePicture: UIImage,
+			score: Int,
+			sortType: ScoreType
+		) {
+			self.name = name
+			self.profilePicture = .init(image: profilePicture)
+			self.score = score
+			self.sortType = sortType
+			self.id = UUID()
+		}
+		init(name: String, profilePicture: UIImage) {
+			self.name = name
+			self.profilePicture = .init(image: profilePicture)
+			score = 0
+			self.sortType = .highestScore
+			self.id = UUID()
+		}
+		init (
+			name: String,
+			profilePicture: UIImage,
+			score: Int
+		) {
+			self.name = name
+			self.profilePicture = .init(image: profilePicture)
+			self.score = score
+			self.sortType = .highestScore
+			self.id = UUID()
+		}
+		init(name: String, sortType: ScoreType) {
+			self.name = name
+			let monogramView: MonogramIconUIView = .init(initials: name.first?.uppercased() ?? "", backgroundColour: .systemBlue)
+			monogramView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+			monogramView.layoutIfNeeded()
+			self.profilePicture = .init(image: monogramView.asImage())
+			score = 0
+			self.sortType = sortType
+			self.id = UUID()
+		}
+		init (
+			name: String,
+			score: Int,
+			sortType: ScoreType
+		) {
+			self.name = name
+			let monogramView: MonogramIconUIView = .init(initials: name.first?.uppercased() ?? "", backgroundColour: .systemBlue)
+			monogramView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+			monogramView.layoutIfNeeded()
+			self.profilePicture = .init(image: monogramView.asImage())
+			self.score = score
+			self.sortType = sortType
+			self.id = UUID()
+		}
+		init(name: String) {
+			self.name = name
+			let monogramView: MonogramIconUIView = .init(initials: name.first?.uppercased() ?? "", backgroundColour: .systemBlue)
+			monogramView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+			monogramView.layoutIfNeeded()
+			self.profilePicture = .init(image: monogramView.asImage())
+			score = 0
+			self.sortType = .highestScore
+			self.id = UUID()
+		}
+		init (
+			name: String,
+			score: Int
+		) {
+			self.name = name
+			let monogramView: MonogramIconUIView = .init(initials: name.first?.uppercased() ?? "", backgroundColour: .systemBlue)
+			monogramView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+			monogramView.layoutIfNeeded()
+			self.profilePicture = .init(image: monogramView.asImage())
+			self.score = score
+			self.sortType = .highestScore
+			self.id = UUID()
+		}
+	init(name: String, profilePicture: UIImage, sortType: ScoreType, id: UUID) {
 		self.name = name
 		self.profilePicture = .init(image: profilePicture)
 		score = 0
 		self.sortType = sortType
+		self.id = id
 	}
 	init (
 		name: String,
 		profilePicture: UIImage,
 		score: Int,
-		sortType: ScoreType
+		sortType: ScoreType,
+		id: UUID
 	) {
 		self.name = name
 		self.profilePicture = .init(image: profilePicture)
 		self.score = score
-		self.sortType = sortType	}
-	init(name: String, profilePicture: UIImage) {
+		self.sortType = sortType
+		self.id = id
+	}
+	init(name: String, profilePicture: UIImage, id: UUID) {
 		self.name = name
 		self.profilePicture = .init(image: profilePicture)
 		score = 0
 		self.sortType = .highestScore
+		self.id = id
 	}
 	init (
 		name: String,
 		profilePicture: UIImage,
-		score: Int
+		score: Int,
+		id: UUID
 	) {
 		self.name = name
 		self.profilePicture = .init(image: profilePicture)
 		self.score = score
 		self.sortType = .highestScore
+		self.id = id
 	}
-	init(name: String, sortType: ScoreType) {
+	init(name: String, sortType: ScoreType, id: UUID) {
 		self.name = name
 		let monogramView: MonogramIconUIView = .init(initials: name.first?.uppercased() ?? "", backgroundColour: .systemBlue)
 		monogramView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -54,11 +146,13 @@ struct Player {
 		self.profilePicture = .init(image: monogramView.asImage())
 		score = 0
 		self.sortType = sortType
+		self.id = id
 	}
 	init (
 		name: String,
 		score: Int,
-		sortType: ScoreType
+		sortType: ScoreType,
+		id: UUID
 	) {
 		self.name = name
 		let monogramView: MonogramIconUIView = .init(initials: name.first?.uppercased() ?? "", backgroundColour: .systemBlue)
@@ -66,8 +160,10 @@ struct Player {
 		monogramView.layoutIfNeeded()
 		self.profilePicture = .init(image: monogramView.asImage())
 		self.score = score
-		self.sortType = sortType	}
-	init(name: String) {
+		self.sortType = sortType
+		self.id = id
+	}
+	init(name: String, id: UUID) {
 		self.name = name
 		let monogramView: MonogramIconUIView = .init(initials: name.first?.uppercased() ?? "", backgroundColour: .systemBlue)
 		monogramView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
@@ -75,10 +171,12 @@ struct Player {
 		self.profilePicture = .init(image: monogramView.asImage())
 		score = 0
 		self.sortType = .highestScore
+		self.id = id
 	}
 	init (
 		name: String,
-		score: Int
+		score: Int,
+		id: UUID
 	) {
 		self.name = name
 		let monogramView: MonogramIconUIView = .init(initials: name.first?.uppercased() ?? "", backgroundColour: .systemBlue)
@@ -87,8 +185,9 @@ struct Player {
 		self.profilePicture = .init(image: monogramView.asImage())
 		self.score = score
 		self.sortType = .highestScore
+		self.id = id
 	}
-
+	
 }
 
 extension Player: Comparable {
@@ -97,10 +196,10 @@ extension Player: Comparable {
 			return lhs.name > rhs.name
 		} else {
 			switch lhs.sortType {
-				case .highestScore:
-					return lhs.score > rhs.score
-				case .lowestScore:
-					return lhs.score < rhs.score
+			case .highestScore:
+				return lhs.score > rhs.score
+			case .lowestScore:
+				return lhs.score < rhs.score
 			}
 		}
 	}

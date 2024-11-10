@@ -40,7 +40,8 @@ struct Game {
 			Player.init(
 				name: $0.name,
 				profilePicture: $0.profilePicture.image ?? UIImage(),
-				sortType: sortType
+				sortType: sortType,
+				id: $0.id
 			)
 		}
 		self.winType = winType
@@ -55,6 +56,51 @@ struct Game {
 		sortType: ScoreType
 	) {
 		self.id = UUID()
+		self.name = name
+		self.players = players.map {
+			Player.init(
+				name: $0.name,
+				profilePicture: $0.profilePicture.image ?? UIImage(),
+				sortType: sortType
+			)
+		}
+		self.winType = winType
+		self.sortType = sortType
+		let monogramView: MonogramIconUIView = .init(initials: name, backgroundColour: .systemBlue)
+		monogramView.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+		monogramView.layoutIfNeeded()
+		self.gameImage = .init(image: monogramView.asImage())
+	}
+	init(
+		name: String,
+		players: [Player],
+		gameImage: UIImage,
+		winType: ScoreType,
+		sortType: ScoreType,
+		id: UUID
+	) {
+		self.id = id
+		self.name = name
+		self.players = players.map {
+			Player.init(
+				name: $0.name,
+				profilePicture: $0.profilePicture.image ?? UIImage(),
+				sortType: sortType
+			)
+		}
+		self.winType = winType
+		self.sortType = sortType
+		self.gameImage = ProfilePictureImageView(image: gameImage)
+	}
+	
+	init(
+		name: String,
+		players: [Player],
+		winType: ScoreType,
+		sortType: ScoreType,
+		id: UUID
+	) {
+		self.id = id
 		self.name = name
 		self.players = players.map {
 			Player.init(
