@@ -108,22 +108,54 @@
             </objects>
             <point key="canvasLocation" x="-2193" y="-42"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Add Existing Player-->
         <scene sceneID="fQP-AJ-cKZ">
             <objects>
-                <tableViewController id="jh3-PP-5Kj" sceneMemberID="viewController">
+                <tableViewController id="jh3-PP-5Kj" customClass="AddExistingPlayerTableViewController" customModule="FortniteTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="id1-5K-iSl">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="R8Z-wc-vCD">
-                                <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ExistingPlayerCell" id="R8Z-wc-vCD" customClass="PreExistingPlayerTableViewCell" customModule="FortniteTracker" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="393" height="88.333335876464844"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R8Z-wc-vCD" id="pGs-4K-jUO">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="88.333335876464844"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aFI-fc-QuQ">
+                                            <rect key="frame" x="16" y="4" width="361" height="80.333333333333329"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Afk-qt-I6H" userLabel="Player Profile Picture" customClass="ProfilePictureImageView" customModule="FortniteTracker" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="80.333333333333329"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Afk-qt-I6H" secondAttribute="height" multiplier="1:1" id="0jU-nU-rIr"/>
+                                                        <constraint firstAttribute="height" constant="80" id="4iW-i1-Fbs"/>
+                                                        <constraint firstAttribute="width" constant="80" id="ujS-HV-KkD"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lmN-zA-yen">
+                                                    <rect key="frame" x="88" y="0.0" width="273" height="80.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="aFI-fc-QuQ" secondAttribute="bottom" constant="4" id="5IG-sh-v7f"/>
+                                        <constraint firstAttribute="trailing" secondItem="aFI-fc-QuQ" secondAttribute="trailing" constant="16" id="Fin-WA-QgM"/>
+                                        <constraint firstItem="aFI-fc-QuQ" firstAttribute="leading" secondItem="pGs-4K-jUO" secondAttribute="leading" constant="16" id="SAd-hC-L35"/>
+                                        <constraint firstItem="aFI-fc-QuQ" firstAttribute="top" secondItem="pGs-4K-jUO" secondAttribute="top" constant="4" id="pZP-hM-dmq"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="playerNameLabel" destination="lmN-zA-yen" id="cYg-mJ-GO4"/>
+                                    <outlet property="playerProfilePicture" destination="Afk-qt-I6H" id="etk-Uv-M4F"/>
+                                    <segue destination="Lgs-YX-gB2" kind="unwind" identifier="unwindToAddNewGame" unwindAction="unwindToAddNewGame:" id="6Le-Z0-Zie"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -131,9 +163,10 @@
                             <outlet property="delegate" destination="jh3-PP-5Kj" id="E6e-qE-Yoc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="KyD-wO-jp1"/>
+                    <navigationItem key="navigationItem" title="Add Existing Player" id="KyD-wO-jp1"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXB-Ex-ygu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Lgs-YX-gB2" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2193" y="1377"/>
         </scene>
@@ -357,7 +390,7 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5xr-Fv-RZE">
                                                     <rect key="frame" x="0.0" y="4" width="361" height="80.333333333333329"/>
                                                     <subviews>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nli-Ca-S4q" userLabel="Player Profile Picture" customClass="ProfilePictureImageView" customModule="FortniteTracker" customModuleProvider="target">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nli-Ca-S4q" userLabel="Player Profile Picture" customClass="ProfilePictureImageView" customModule="FortniteTracker" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="80.333333333333329"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="80" id="006-J5-Rve"/>
@@ -365,8 +398,14 @@
                                                                 <constraint firstAttribute="width" secondItem="Nli-Ca-S4q" secondAttribute="height" multiplier="1:1" id="suD-JJ-74A"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4a-wU-d2A" userLabel="Player Name">
-                                                            <rect key="frame" x="100" y="0.0" width="261" height="80.333333333333329"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s4a-wU-d2A" userLabel="Player Name">
+                                                            <rect key="frame" x="99.999999999999986" y="0.0" width="196.66666666666663" height="80.333333333333329"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FQ-f8-B9z">
+                                                            <rect key="frame" x="316.66666666666669" y="0.0" width="44.333333333333314" height="80.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -384,6 +423,7 @@
                                         <connections>
                                             <outlet property="playerNameLabel" destination="s4a-wU-d2A" id="uMR-K9-ede"/>
                                             <outlet property="playerProfilePictureImage" destination="Nli-Ca-S4q" id="zXa-gK-PPf"/>
+                                            <outlet property="playerScoreLabel" destination="0FQ-f8-B9z" id="fS1-Cs-nLg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

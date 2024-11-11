@@ -88,6 +88,16 @@ class AddNewGameViewController: UIViewController {
 		tableView.reloadData()
 	}
 	
+	@IBAction func unwindToAddNewGame(_ segue: UIStoryboardSegue) {
+		guard segue.identifier == "unwindToAddNewGame",
+			  let addNewPlayerVC = segue.source as? AddExistingPlayerTableViewController,
+			  let playerToPass = addNewPlayerVC.playerToPass else { return }
+		print(playerToPass)
+			newGame.players.append(playerToPass)
+			refreshPlayerSortType(newGame.sortType)
+			tableView.reloadData()
+	}
+	
 	func refreshPlayerSortType(_ sortType: ScoreType) {
 		for element in newGame.players {
 			newGame.players[newGame.players.firstIndex(of: element)!].sortType = sortType

@@ -61,11 +61,6 @@ class AddNewPlayerTableViewController: UITableViewController {
 			profilePicture: playerImageView.image ?? UIImage(),
 			score: Int(currentScoreTextField.text!) ?? 0
 		) : Player(name: playerNameTextField.text ?? "Player", score: Int(currentScoreTextField.text!) ?? 0)
-		print("""
-New Player in NewPlayerViewController:
-	Name: \(newPlayer?.name ?? "Error")
-	Score: \(newPlayer?.score ?? 404)
-""")
 		guard let newPlayer = newPlayer else { return }
 		delegate?.didAddNewPlayer(newPlayer)
 		dismiss(animated: true , completion: nil)

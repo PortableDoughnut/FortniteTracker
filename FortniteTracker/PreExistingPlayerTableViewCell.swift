@@ -1,16 +1,15 @@
 //
-//  GenericPlayerTableViewCell.swift
+//  PreExistingPlayerTableViewCell.swift
 //  FortniteTracker
 //
-//  Created by Gwen Thelin on 11/9/24.
+//  Created by Gwen Thelin on 11/10/24.
 //
 
 import UIKit
 
-class GenericPlayerTableViewCell: UITableViewCell {
-	@IBOutlet weak var playerScoreLabel: UILabel!
-	@IBOutlet weak var playerProfilePictureImage: ProfilePictureImageView!
+class PreExistingPlayerTableViewCell: UITableViewCell {
 	@IBOutlet weak var playerNameLabel: UILabel!
+	@IBOutlet weak var playerProfilePicture: ProfilePictureImageView!
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,11 +21,9 @@ class GenericPlayerTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-	
-	func configure(with player: Player) {
-		playerProfilePictureImage.image = player.profilePicture.image
-		playerNameLabel.text = player.name
-		playerScoreLabel.text = "\(player.score)"
-	}
 
+	func configure(with player: Player) {
+		playerNameLabel.text = player.name
+		playerProfilePicture.image = player.profilePicture.image
+	}
 }
