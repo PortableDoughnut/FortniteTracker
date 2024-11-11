@@ -28,7 +28,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EGK-MZ-txU">
                                             <rect key="frame" x="16" y="4.6666666666666643" width="321" height="80"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jUG-us-oV9" customClass="ProfilePictureImageView" customModule="FortniteTracker" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jUG-us-oV9" customClass="ProfilePictureImageView" customModule="FortniteTracker" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="80" id="37C-Xe-1iz"/>
@@ -113,7 +113,7 @@
             <objects>
                 <tableViewController id="jh3-PP-5Kj" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="id1-5K-iSl">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -135,7 +135,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zXB-Ex-ygu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2193" y="1328"/>
+            <point key="canvasLocation" x="-2193" y="1377"/>
         </scene>
         <!--Scoreboard-->
         <scene sceneID="paq-Mk-9IW">
@@ -264,6 +264,9 @@
                                             <segment title="Highest Score"/>
                                             <segment title="Lowest Score"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="scoreSortValueChanged:" destination="I0e-Sg-OCP" eventType="valueChanged" id="XwT-9z-Aaz"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Winner By" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSM-Xs-txg">
                                         <rect key="frame" x="0.0" y="59.33333333333335" width="361" height="20.333333333333336"/>
@@ -271,34 +274,50 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="q9V-S9-3DQ">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="q9V-S9-3DQ" userLabel="Winner Sort Segment">
                                         <rect key="frame" x="0.0" y="83.666666666666657" width="361" height="32"/>
                                         <segments>
                                             <segment title="Highest Score"/>
                                             <segment title="Lowest Score"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="winnerSortValueChanged:" destination="I0e-Sg-OCP" eventType="valueChanged" id="Di9-8z-eQX"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E2P-vs-D6u" userLabel="Choose Image Control">
-                                <rect key="frame" x="16" y="225.66666666666663" width="361" height="150"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="E2P-vs-D6u" userLabel="Settings View">
+                                <rect key="frame" x="16" y="229.66666666666663" width="361" height="192"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-y0-ahn">
-                                        <rect key="frame" x="0.0" y="0.0" width="161" height="150"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="photo" catalog="system" title="Choose Image"/>
-                                    </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fe2-gj-2U6">
-                                        <rect key="frame" x="161" y="0.0" width="200" height="150"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Fe2-gj-2U6" secondAttribute="height" multiplier="4:3" id="HJb-ZP-Weg"/>
-                                            <constraint firstAttribute="width" constant="200" id="gff-4c-Vko"/>
-                                        </constraints>
-                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Game Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ivy-Mq-ToX">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bin-a5-w8U">
+                                        <rect key="frame" x="0.0" y="42.000000000000028" width="361" height="150"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YlI-y0-ahn">
+                                                <rect key="frame" x="0.0" y="0.0" width="161" height="150"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="photo" catalog="system" title="Choose Image"/>
+                                                <connections>
+                                                    <action selector="chooseImageButtonTapped:" destination="I0e-Sg-OCP" eventType="touchUpInside" id="9OL-b3-wDP"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fe2-gj-2U6">
+                                                <rect key="frame" x="161" y="0.0" width="200" height="150"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Fe2-gj-2U6" secondAttribute="height" multiplier="4:3" id="HJb-ZP-Weg"/>
+                                                    <constraint firstAttribute="width" constant="200" id="gff-4c-Vko"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Players" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKe-fo-FU1">
-                                <rect key="frame" x="16" y="383.66666666666669" width="361" height="20.333333333333314"/>
+                                <rect key="frame" x="16" y="429.66666666666669" width="361" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -319,13 +338,13 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" title="Choose Player"/>
                                         <connections>
-                                            <segue destination="jh3-PP-5Kj" kind="presentation" id="b9g-mQ-Oym"/>
+                                            <segue destination="jh3-PP-5Kj" kind="show" id="b9g-mQ-Oym"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Zcc-1j-7TK">
-                                <rect key="frame" x="16" y="408" width="361" height="359.66666666666674"/>
+                                <rect key="frame" x="16" y="454" width="361" height="313.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewGamePlayerCell" id="xxe-E1-fen" customClass="GenericPlayerTableViewCell" customModule="FortniteTracker" customModuleProvider="target">
@@ -377,6 +396,7 @@
                             <constraint firstItem="Zcc-1j-7TK" firstAttribute="top" secondItem="zKe-fo-FU1" secondAttribute="bottom" constant="4" id="6G7-Ot-dgO"/>
                             <constraint firstItem="E2P-vs-D6u" firstAttribute="leading" secondItem="PFy-y2-bww" secondAttribute="leading" id="Bl4-En-GWJ"/>
                             <constraint firstItem="Zcc-1j-7TK" firstAttribute="leading" secondItem="FyX-RZ-c68" secondAttribute="leading" constant="16" id="C6S-wz-bRe"/>
+                            <constraint firstItem="E2P-vs-D6u" firstAttribute="top" secondItem="PFy-y2-bww" secondAttribute="bottom" constant="8" id="Cj7-E1-SZm"/>
                             <constraint firstItem="FyX-RZ-c68" firstAttribute="trailing" secondItem="zKe-fo-FU1" secondAttribute="trailing" constant="16" id="Fx7-E5-TNd"/>
                             <constraint firstItem="AXJ-s6-RZQ" firstAttribute="top" secondItem="Zcc-1j-7TK" secondAttribute="bottom" constant="8" id="Ia1-jv-Ehb"/>
                             <constraint firstItem="PFy-y2-bww" firstAttribute="top" secondItem="FyX-RZ-c68" secondAttribute="top" constant="4" id="KoW-Vn-mzc"/>
@@ -390,18 +410,25 @@
                             <constraint firstItem="FyX-RZ-c68" firstAttribute="trailing" secondItem="AXJ-s6-RZQ" secondAttribute="trailing" constant="16" id="gq0-CA-iSj"/>
                             <constraint firstItem="FyX-RZ-c68" firstAttribute="bottom" secondItem="AXJ-s6-RZQ" secondAttribute="bottom" constant="8" id="pTt-nP-Gcj"/>
                             <constraint firstItem="FyX-RZ-c68" firstAttribute="trailing" secondItem="E2P-vs-D6u" secondAttribute="trailing" constant="16" id="s6Y-34-vmG"/>
-                            <constraint firstItem="E2P-vs-D6u" firstAttribute="top" secondItem="PFy-y2-bww" secondAttribute="bottom" constant="4" id="tum-7J-Us8"/>
                             <constraint firstItem="zKe-fo-FU1" firstAttribute="top" secondItem="E2P-vs-D6u" secondAttribute="bottom" constant="8" id="yV7-Qd-qoB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add New Game" id="8I8-SA-yER">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4jl-Oa-zLr"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4jl-Oa-zLr">
+                            <connections>
+                                <segue destination="1Ef-0g-QhD" kind="unwind" unwindAction="unwindToGameMenu:" id="FO7-lu-pPZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="gameIconImageView" destination="Fe2-gj-2U6" id="fIX-Zf-r2K"/>
+                        <outlet property="gameTitleTextField" destination="ivy-Mq-ToX" id="Vj8-y3-u4Q"/>
+                        <outlet property="saveBarButtonItem" destination="4jl-Oa-zLr" id="62I-Ae-bza"/>
                         <outlet property="tableView" destination="Zcc-1j-7TK" id="hd0-58-z5p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mPd-30-aOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="1Ef-0g-QhD" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-2193" y="649"/>
         </scene>

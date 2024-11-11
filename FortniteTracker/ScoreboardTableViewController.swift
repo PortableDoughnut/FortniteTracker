@@ -10,15 +10,17 @@ import UIKit
 class ScoreboardTableViewController: UITableViewController {
 
 	var currentGameIndex: Int?
+	var currentGamePlayers: [Player] = []
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		currentGamePlayers = games[currentGameIndex!].players.sorted()
     }
 	
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-		games[currentGameIndex!].players.count
+		currentGamePlayers.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -31,7 +33,7 @@ class ScoreboardTableViewController: UITableViewController {
 			return UITableViewCell()
 		}
 		
-		let player: Player = games[currentGameIndex!].players[indexPath.section]
+		let player: Player = currentGamePlayers[indexPath.section]
 		cell.configure(with: player)
 		cell.delegate = self
 
@@ -55,17 +57,6 @@ class ScoreboardTableViewController: UITableViewController {
 	@IBAction func stepperValueChanged(_ sender: UIStepper) {
 	}
 	
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-//		if let destintaion = segue.destination as? AddNewPlayerTableViewController {
-//			destintaion.sourceViewController = "scoreboardUnwind"
-//		}
-        // Pass the selected object to the new view controller.
-    }
-	
 	@IBAction func addPlayerButtonTapped(_ sender: UIBarButtonItem) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
 		if let addNewPlayerVC = storyboard.instantiateViewController(withIdentifier: "AddNewPlayerTableViewController") as? AddNewPlayerTableViewController {
@@ -76,7 +67,7 @@ class ScoreboardTableViewController: UITableViewController {
 	}
 	
 	func sortReload() {
-		games[currentGameIndex!].players = games[currentGameIndex!].players.sorted()
+		currentGamePlayers = games[currentGameIndex!].players.sorted()
 		tableView.reloadData()
 	}
 
@@ -97,11 +88,6 @@ extension ScoreboardTableViewController: PlayerTableViewCellDelegate {
 
 extension ScoreboardTableViewController: NewPlayerDelegate {
 	func didAddNewPlayer(_ player: Player) {
-		print("""
-New Player in ScoereboardViewController:
-	Name: \(player.name)
-	Score: \(player.score)
-""")
 		guard let currentGameIndex = currentGameIndex else {	return	}
 		games[currentGameIndex].players.append(player)
 		games[currentGameIndex].players.sort()

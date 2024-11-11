@@ -8,7 +8,6 @@
 import UIKit
 
 class GameMenuTableViewController: UITableViewController {
-
 	var gameToPass: Game = .init(
 		name: "Game",
 		players: [Player(name: "Player", profilePicture: UIImage())],
@@ -56,9 +55,8 @@ class GameMenuTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
 			games.remove(at: indexPath.section)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+			tableView.deleteSections([indexPath.section], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
@@ -93,5 +91,11 @@ class GameMenuTableViewController: UITableViewController {
 		}
         // Pass the selected object to the new view controller.
     }
+	
+	@IBAction func unwindToGameMenu(_ segue: UIStoryboardSegue) {
+		guard let source = segue.source as? AddNewGameViewController else { return }
+		games.append(source.newGame)
+		tableView.reloadData()
+	}
 
 }
