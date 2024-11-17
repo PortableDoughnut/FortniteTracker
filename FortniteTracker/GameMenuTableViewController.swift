@@ -56,8 +56,6 @@ class GameMenuTableViewController: UITableViewController {
 		if editingStyle == .delete {
 			games.remove(at: indexPath.section)
 			tableView.deleteSections([indexPath.section], with: .fade)
-		} else if editingStyle == .insert {
-			// Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 		}
 	}
 	
